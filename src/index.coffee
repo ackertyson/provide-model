@@ -14,9 +14,12 @@ class ProvideModel
     Model = @_wrap Model # wrap model methods in ES6 generators
     for name, property of Model # add static class properties
       @BaseModel[name] = property
-    for name, property of Model.prototype # add BaseModel instance properties
-      @BaseModel.prototype[name] = property
-    new @BaseModel Model.prototype.schema, args...
+    base = new @BaseModel Model.prototype.schema, args...
+    # add BaseModel instance properties (do this AFTER instantiating so models
+    #  don't inadvertantly share prototype methods)
+    for name, property of Model.prototype
+      base[name] = property
+    base
 
 
   _wrap: (Model) ->
