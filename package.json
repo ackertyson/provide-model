@@ -1,0 +1,29 @@
+{
+  "name": "provide-model",
+  "version": "0.0.1",
+  "description": "Wrap model methods in promise-aware ES6 generators",
+  "files": ["dist/"],
+  "main": "dist/index.min.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ackertyson/provide-model.git"
+  },
+  "author": "tyson@devmode.com",
+  "license": "ISC",
+  "dependencies": {
+    "promise": "^7.1.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-coffee": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-mocha-test": "^0.13.2",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.6"
+  }
+}
