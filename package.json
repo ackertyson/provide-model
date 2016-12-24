@@ -1,8 +1,10 @@
 {
   "name": "provide-model",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Wrap model methods in promise-aware ES6 generators",
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "main": "dist/index.min.js",
   "scripts": {
     "test": "grunt test"
