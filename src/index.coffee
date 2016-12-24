@@ -5,14 +5,18 @@ class ProvideModel
   #  of clunkier Promise.then().catch() (though all methods remain Promise-based
   #  under the hood); also add BASEMODEL properties to provided model.
   constructor: (@BaseModel) ->
+    # add BaseModel instance properties to this class (for use in 'requiring' model)
+    for name, property of @BaseModel.prototype
+      @[name] = property
+
 
   provide: (Model, args...) ->
     Model = @_wrap Model # wrap model methods in ES6 generators
-    for name, property of @BaseModel # add static class properties
-      Model[name] = property
-    for name, property of @BaseModel.prototype # add BaseModel instance properties
-      Model.prototype[name] = property
-    new Model args...
+    for name, property of Model # add static class properties
+      @BaseModel[name] = property
+    for name, property of Model.prototype # add BaseModel instance properties
+      @BaseModel.prototype[name] = property
+    new @BaseModel Model.prototype.schema, args...
 
 
   _wrap: (Model) ->
@@ -22,7 +26,7 @@ class ProvideModel
 
     _yields = (callback) ->
       (args...) ->
-        generator = callback.call null, args...
+        generator = callback.call @, args...
         handle = (result) ->
           return Promise.resolve result.value if result.done
           Promise.resolve(result.value).then (data) ->
