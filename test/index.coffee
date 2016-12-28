@@ -23,7 +23,7 @@ describe 'provide-model', ->
     @modelz = @n.provide ModelZ, 'fake2'
     done()
 
-  it 'should add class and instance properties', ->
+  it 'should add instance properties', ->
     @model.should.have.property 'methodA'
     @model.should.have.property 'methodD'
     @model.constructor.should.have.property 'prop', 999

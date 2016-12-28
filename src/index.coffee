@@ -12,9 +12,7 @@ class ProvideModel
 
   provide: (Model, args...) ->
     Model = @_wrap Model # wrap model methods in ES6 generators
-    for name, property of Model # add static class properties
-      @BaseModel[name] = property
-    base = new @BaseModel args...
+    base = new @BaseModel Model, args...
     # add MODEL instance properties to base (do this AFTER instantiating so
     #  models don't inadvertantly share prototype methods)
     for name, property of Model.prototype
