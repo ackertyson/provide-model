@@ -1,5 +1,3 @@
-Promise = require 'promise'
-
 class ProvideModel
   # Wrap model methods in ES6 generator function so we can use 'yield' instead
   #  of clunkier Promise.then().catch() (though all methods remain Promise-based
@@ -40,11 +38,10 @@ class ProvideModel
           Promise.reject ex
 
     for name, prop of Model.prototype
-      Model.prototype[name] = _yields prop if _typeof prop, 'function'
+      Model.prototype[name] = _yields prop if _typeof(prop, 'function') or _typeof(prop, 'generatorfunction')
       if _typeof prop, 'object'
         Model.prototype[name] = prop
         @_wrap prop
     Model
-
 
 module.exports = ProvideModel

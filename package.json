@@ -5,6 +5,7 @@
   "files": [
     "dist/"
   ],
+  "homepage": "http://providejs.com/",
   "main": "dist/index.min.js",
   "scripts": {
     "test": "grunt test"
@@ -15,9 +16,7 @@
   },
   "author": "tyson@devmode.com",
   "license": "ISC",
-  "dependencies": {
-    "promise": "^7.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
     "grunt": "^1.0.1",

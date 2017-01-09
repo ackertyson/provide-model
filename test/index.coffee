@@ -3,6 +3,8 @@ Model = require '../src/index'
 describe 'provide-model', ->
   before (done) ->
     class ModelX
+      table:
+        name: 'fake'
       methodA: (arg) ->
         yield Promise.resolve "AX #{arg}"
       methodB: (arg) ->
@@ -10,17 +12,19 @@ describe 'provide-model', ->
       methodC: (arg) ->
         yield Promise.reject new Error "C #{arg}"
     class ModelZ
+      table:
+        name: 'fake2'
       methodA: (arg) ->
         yield Promise.resolve "AZ #{arg}"
     class ModelY
       @prop: 999
-      constructor: (@value, other) ->
+      constructor: (Model) ->
       methodD: (arg) ->
         yield Promise.resolve "A #{arg}"
     @m = new Model ModelY
     @n = new Model ModelY
-    @model = @m.provide ModelX, 'fake'
-    @modelz = @n.provide ModelZ, 'fake2'
+    @model = @m.provide ModelX
+    @modelz = @n.provide ModelZ
     done()
 
   it 'should add instance properties', ->
