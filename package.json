@@ -6,7 +6,7 @@
     "dist/"
   ],
   "homepage": "http://providejs.com/",
-  "main": "dist/index.min.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "grunt test"
   },
